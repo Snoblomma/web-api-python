@@ -13,5 +13,7 @@ import hello.views
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
+    url(r'^github', hello.views.github, name='github'),
+    url(r'^home', hello.views.home, name='home'),
     path('admin/', admin.site.urls),
 ]
