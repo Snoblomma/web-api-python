@@ -18,7 +18,10 @@ class Migration(migrations.Migration):
             name='Places',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('bla', models.DateTimeField(auto_now_add=True, verbose_name=b'date created')),
+                ('name', models.CharField(max_length=255, blank=False, unique=True, verbose_name='name')),
+                ('placeId', models.CharField(max_length=255, blank=False, unique=True, verbose_name='place id')),
+                ('date_created', models.DateTimeField(auto_now_add=True, verbose_name=b'date created')),
+                ('date_modified', models.DateTimeField(auto_now=True, verbose_name=b'date modified')),
             ],
         )
     ]
