@@ -7,3 +7,4 @@ class NoteResource(ModelResource):
         queryset = Note.objects.all()
         resource_name = 'note'
         authorization = Authorization()
+        fields = ['title', 'body']
