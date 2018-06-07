@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Note
+from .models import Place
 
-class NoteSerializer(serializers.ModelSerializer):
+class PlaceSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
-        model = Note
-        fields = ('title', 'body', 'created_at')
-        read_only_fields = ('body', 'created_at')
+        model = Place
+        fields = ('place_id', 'name', 'added_at', 'visited')
+        read_only_fields = ('place_id', 'name', 'added_at', 'visited')
