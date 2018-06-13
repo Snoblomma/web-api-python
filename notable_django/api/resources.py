@@ -7,4 +7,4 @@ class PlaceResource(ModelResource):
         queryset = Place.objects.all()
         resource_name = 'place'
         authorization = Authorization()
-        fields = ['place_id', 'name', 'added_at', 'visited']
+        fields = ['place_id', 'name', 'visited', 'types', 'created_at', 'updated_at']

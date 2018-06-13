@@ -7,5 +7,5 @@ class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = Place
-        fields = ('place_id', 'name', 'added_at', 'visited')
-        read_only_fields = ('place_id', 'name', 'added_at', 'visited')
+        fields = ('place_id', 'name', 'visited', 'types', 'created_at', 'updated_at')
+        read_only_fields = ('place_id', 'name', 'visited', 'types', 'created_at', 'updated_at')
