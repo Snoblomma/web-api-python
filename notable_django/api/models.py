@@ -6,7 +6,7 @@ class Place(models.Model):
     place_id = models.CharField(max_length=200)
     name = models.TextField()
     visited = models.BooleanField()
-    types = ArrayField(models.TextField())
+    types = ArrayField(models.CharField(max_length=200))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

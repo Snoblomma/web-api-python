@@ -3,7 +3,6 @@
 from django.db import migrations, models
 from django.contrib.postgres.fields import ArrayField
 
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -18,7 +17,7 @@ class Migration(migrations.Migration):
                 ('place_id', models.CharField(max_length=200)),
                 ('name', models.TextField()),
                 ('visited', models.BooleanField()),
-                ('types', ArrayField(models.TextField()),
+                ('types', ArrayField(models.CharField(max_length=200))),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
