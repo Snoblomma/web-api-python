@@ -22,4 +22,13 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
+        migrations.CreateModel(
+            name='Category',
+            fields=[
+                ('auto_id', models.AutoField(primary_key=True, serialize=False)),
+                ('category_id', models.CharField(max_length=200)),
+                ('name', models.CharField(max_length=200)),
+                ('description', models.CharField(max_length=200))
+            ],
+        ),
     ]
