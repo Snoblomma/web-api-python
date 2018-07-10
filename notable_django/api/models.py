@@ -12,7 +12,6 @@ class Place(models.Model):
 
 class Category(models.Model):
     auto_id = models.AutoField(primary_key=True)
-    category_id = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
 
