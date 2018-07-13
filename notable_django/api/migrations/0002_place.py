@@ -2,6 +2,7 @@
 
 from django.db import migrations, models
 from django.contrib.postgres.fields import ArrayField
+from api.models import Category
 
 class Migration(migrations.Migration):
 
@@ -11,23 +12,23 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Place',
-            fields=[
-                ('auto_id', models.AutoField(primary_key=True, serialize=False)),
-                ('place_id', models.CharField(max_length=200)),
-                ('name', models.TextField()),
-                ('visited', models.BooleanField()),
-                ('types', ArrayField(models.CharField(max_length=200))),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Category',
             fields=[
                 ('auto_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=200)),
                 ('description', models.CharField(max_length=200))
+            ],
+        ),
+        migrations.CreateModel(
+            name='Place',
+            fields=[
+                ('auto_id', models.AutoField(primary_key=True, serialize=False)),
+                ('place_id', models.CharField(max_length=200)),
+                ('name', models.CharField(max_length=200)),
+                ('visited', models.BooleanField()),
+                ('category', models.ForeignKey('Category', on_delete = models.CASCADE)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
     ]
