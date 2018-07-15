@@ -5,11 +5,11 @@ from .models import Category
 class CategorySerializer(serializers.ModelSerializer):
     class Meta: 
         model = Category 
-        fields = ('name', 'description')
-        read_only_fields = ('name', 'description')
+        fields = ('name')
+        read_only_fields = ('name')
 
 class PlaceSerializer(serializers.ModelSerializer):
-    """Serializer to map the Model instance into JSON format."""
+    category = CategorySerializer(many=True, required=True)
 
     class Meta:
         """Meta class to map serializer's fields with the model fields."""

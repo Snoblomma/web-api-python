@@ -14,9 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('category_id', models.AutoField(primary_key=True, serialize=False)),
+                ('auto_id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=200))
             ],
         ),
         migrations.CreateModel(
@@ -26,7 +25,7 @@ class Migration(migrations.Migration):
                 ('place_id', models.CharField(max_length=200)),
                 ('name', models.CharField(max_length=200)),
                 ('visited', models.BooleanField()),
-                ('category', models.ForeignKey('Category', on_delete = models.CASCADE)),
+                ('category', models.ForeignKey("Category", on_delete=models.CASCADE)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],

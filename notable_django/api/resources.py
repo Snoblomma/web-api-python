@@ -15,4 +15,4 @@ class CategoryResource(ModelResource):
         queryset = Category.objects.all()
         resource_name = 'category'
         authorization = Authorization()
-        fields = ['name', 'description']
+        fields = ['name']
