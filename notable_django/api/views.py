@@ -5,6 +5,7 @@ from .serializers import PlaceSerializer
 from .serializers import CategorySerializer
 from .models import Place
 from .models import Category
+from .forms import CategoryForm
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.generic import ListView
@@ -29,8 +30,11 @@ class CategoryView(View):
         return JsonResponse(output, safe=False)
 
     def post(self, request, *args, **kwargs):
-        # category_list = Category.objects.order_by('name')
-        # output = ', '.join([q.name for q in category_list])
+        a = {
+            "name": "this is name"
+        }
+        f = CategoryForm(request.POST, instance=a)
+        f.save()
         responseData = {
             'id': 4,
             'success': 'Test Response',
