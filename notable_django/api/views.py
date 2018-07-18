@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 
 from rest_framework import generics
 from .serializers import PlaceSerializer
@@ -12,69 +13,57 @@ from django.views.generic import ListView
 from django.views import View
 
 class CategoryView(View):
-    # queryset = Category.objects.all()
-    # serializer_class = CategorySerializer
-    # model = Category
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    model = Category
 
     # def perform_create(self, serializer):
     #     serializer.save()
     def get(self, request, *args, **kwargs):
-        # queryset = Category.objects.all()
         category_list = Category.objects.order_by('name')
-        output = ', '.join([q.name for q in category_list])
-        responseData = {
-            'id': 4,
-            'name': 'Test Response',
-            'roles' : ['Admin','User']
-        }
+        output = []
+        for q in category_list:
+            output.append(str(q.auto_id) + ": " + q.name)
         return JsonResponse(output, safe=False)
 
     def post(self, request, *args, **kwargs):
-        a = {
-            "name": "this is name"
-        }
-        f = CategoryForm(request.POST, instance=a)
-        f.save()
+        # a = {
+        #     "name": "this is name"
+        # }
+        # f = CategoryForm(request.POST, instance=a)
+        # Category.objects. perform_create(name='some_name')
+        # f.save()
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        name = body['name']
+        b2 = Category(name = name)
+        b2.save()
         responseData = {
-            'id': 4,
-            'success': 'Test Response',
-            'roles' : ['Admin','User']
+            'success': name
         }
         return JsonResponse(responseData, safe=False)
 
 
 class PlaceView(View):
-    # queryset = Place.objects.all()
-    # serializer_class = PlaceSerializer
+    queryset = Place.objects.all()
+    serializer_class = PlaceSerializer
+    model = Place
 
-    # model = Place
-
-    # def perform_create(self, serializer):
-    #     serializer.save()
-
-    # def head(self, *args, **kwargs):
-    #     data = {
-    #     'name': 'Vitor',
-    #     'location': 'Finland',
-    #     'is_active': True,
-    #     'count': 28
-    # }
-    #     return JsonResponse(data)
     def get(self, request, *args, **kwargs):
-        queryset = Place.objects.all()
         places_list = Place.objects.order_by('name')
         output = ', '.join([q.name for q in places_list])
-        responseData = {
-            'id': 4,
-            'name': 'Test Response',
-            'roles' : ['Admin','User']
-        }
         return JsonResponse(output, safe=False)
 
     def post(self, request, *args, **kwargs):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        name = body['name']
+        place_id = body['place_id']
+        visited = body['visited']
+        category = body['category']
+        b2 = Place(place_id = place_id, name = name, visited = visited, category = category)
+        b2.save()
         responseData = {
-            'id': 4,
-            'success': 'Test Response',
-            'roles' : ['Admin','User']
+            'success': 'wow!'
         }
         return JsonResponse(responseData, safe=False)
