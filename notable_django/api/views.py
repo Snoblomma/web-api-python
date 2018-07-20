@@ -61,7 +61,10 @@ class PlaceView(View):
         place_id = body['place_id']
         visited = body['visited']
         category = body['category']
-        b2 = Place(place_id = place_id, name = name, visited = visited, category = category)
+        test = Category(name = "this is test")
+        b2 = Place(place_id = place_id, name = name, visited = visited)
+        b2.save()
+        b2.category.set(test)
         b2.save()
         responseData = {
             'success': 'wow!'
